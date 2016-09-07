@@ -1,11 +1,13 @@
 
 import {EthereumService} from './demo/ethereum.service'
 import {IpfsService} from './demo/ipfs.service'
+import {EtherCareService} from './demo/ethercare.service'
 
 export interface IEtherCareConfig {
     Version: string;
     EthereumService: EthereumService;
     IpfsService: IpfsService;
+    EtherCareService: EtherCareService;
 }
 
 export interface IRootScopeService extends angular.IRootScopeService {
@@ -21,7 +23,8 @@ export function runBlock(
     $rootScope: IRootScopeService,
     $state: any,
     EthereumService: EthereumService,
-    IpfsService: IpfsService
+    IpfsService: IpfsService,
+    EtherCareService: EtherCareService
 ) {
 
     var w = <any>window;
@@ -32,6 +35,7 @@ export function runBlock(
 
     $rootScope.App.EthereumService = EthereumService;
     $rootScope.App.IpfsService = IpfsService;
+    $rootScope.App.EtherCareService = EtherCareService;
 
     $rootScope.$on('$stateChangeStart', function (evt, to, params) {
         if (to.redirectTo) {
@@ -40,6 +44,6 @@ export function runBlock(
         }
     });
 
-    // $log.debug('App', $rootScope.App);
+    $log.debug('EtherCareService.CarePlan', $rootScope.App.EtherCareService.CarePlan);
 
 }

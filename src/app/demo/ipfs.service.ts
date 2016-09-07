@@ -88,12 +88,10 @@ export class IpfsService {
         this.ipfs = w.IpfsApi(host, port);
 
         this.ipfs.id()
-            .then(function (id) {
-                console.log('my id is: ', id)
-
-
+            .then((id) => {
+                this.$log.debug('my id is: ', id)
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log('Fail: ', err)
                 // promptIpfsSetup();
             })
