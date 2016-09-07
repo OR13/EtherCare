@@ -8,6 +8,10 @@ import { DemoController } from '../app/demo/demo.controller';
 import { SecurityService} from '../app/demo/security.service';
 import { EthereumService} from '../app/demo/ethereum.service';
 
+import { IpfsService} from '../app/demo/ipfs.service';
+
+
+
 import { appNavbar } from '../app/navbar/navbar';
 import { ethercareApp } from '../app/app.directive'
 
@@ -42,6 +46,7 @@ angular.module('ethercareApp', [
     .service('EthereumService', EthereumService)
     .service('SecurityService', SecurityService)
 
+    .service('IpfsService', IpfsService)
 
     .controller('DemoController', DemoController)
 
