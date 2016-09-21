@@ -1,9 +1,22 @@
-<div layout="column" layout-fill>
+<app-navbar>
+</app-navbar>
 
-    <app-navbar></app-navbar>
 
-    <md-content layout-padding>
-        demo here...
-    </md-content>
+<md-list ng-cloak>
 
-</div>
+  <md-subheader class="md-no-sticky">Patients</md-subheader>
+  <md-list-item ng-repeat="patient in demoCtrl.patients" ng-click="demoCtrl.completeNextActivity(patient, $event)" class="noright">
+    <img alt="{{ patient.name }}" ng-src="{{ patient.img }}" class="md-avatar" />
+    <p>{{ patient.name }}</p>
+
+
+    <span ng-repeat="activity in patient.available_activities">
+      <i aria-label="{{activity.schema_config.title}}" class="ec-actions material-icons md-primary" >{{activity.render_config.icon}}</i>
+    </span>
+
+    <!--<i aria-label="Chat" class="ec-actions material-icons" ng-click="demoCtrl.doSecondaryAction($event)">assignment</i>-->
+
+  </md-list-item>
+</md-list>
+
+

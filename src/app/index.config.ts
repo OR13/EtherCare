@@ -5,7 +5,8 @@ export function config(
     $httpProvider: angular.IHttpProvider,
     $mdThemingProvider: any,
     toastrConfig: any,
-    localStorageServiceProvider: any
+    localStorageServiceProvider: any,
+    $mdIconProvider: angular.material.IIconProvider
 ) {
     // enable log
     $logProvider.debugEnabled(true);
@@ -16,14 +17,13 @@ export function config(
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
 
-     localStorageServiceProvider
+    localStorageServiceProvider
         .setPrefix('ethercare');
-
 
     $mdThemingProvider
         .theme('etherCareTheme')
 
-        .primaryPalette('red', {
+        .primaryPalette('blue', {
             'default': '700', // by default use shade 400 from the pink palette for primary intentions
             'hue-1': '800', // use shade 100 for the <code>md-hue-1</code> class
             'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
@@ -31,12 +31,12 @@ export function config(
         })
         // If you specify less than all of the keys, it will inherit from the
         // default shades
-        .accentPalette('amber', {
-            'default': 'A700' // use shade 200 for default, and keep all other shades the same
+        .accentPalette('green', {
+            'default': '400' // use shade 200 for default, and keep all other shades the same
         })
 
         .warnPalette('orange')
-        
+
         .backgroundPalette('grey', {
             'default': '200',
             'hue-1': '100',

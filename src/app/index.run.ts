@@ -44,6 +44,6 @@ export function runBlock(
         }
     });
 
-    $log.debug('EtherCareService.CarePlan', $rootScope.App.EtherCareService.CarePlan);
+    // $log.debug('EtherCareService.CarePlan', $rootScope.App.EtherCareService.CarePlan);
 
 }
