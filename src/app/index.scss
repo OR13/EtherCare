@@ -9,13 +9,13 @@
 
 #__bs_notify__ { top:95% !important; right: 10px !important; border-radius: 15px !important; height:60px !important; }
 
-body, html {
-  background: #EEEEEE;
-}
+// body, html {
+//   background: #EEEEEE;
+// }
 
-body #root-view{
-  // height: 100%;
-}
+// body #root-view{
+//   // height: 100%;
+// }
 
 @font-face {
   font-family: 'Material Icons';
@@ -27,23 +27,6 @@ body #root-view{
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff) format('woff'),
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
-}
-
-$md-primary: #455A64;
-$md-accent: #FFC107;
-$md-background: #263238;
-
-// $user-color: $md-primary;
-$bot-color:  $md-primary;
-
-.md-primary{
-    color: $md-primary;
-}
-.md-accent{
-    color: $md-accent;
-}
-.md-background{
-    color: $md-background;
 }
 
 .material-icons {
@@ -75,9 +58,9 @@ html {
   font-family: 'Roboto Slab', serif;
 }
 
-[layout=row] {
-  flex-direction: row;
-}
+// [layout=row] {
+//   flex-direction: row;
+// }
 
 .browsehappy {
   margin: 0.2em 0;
@@ -86,17 +69,6 @@ html {
   padding: 0.2em 0;
 }
 
-
-
-
-md-sidenav, 
-md-sidenav.md-locked-open, 
-md-sidenav.md-closed.md-locked-open-add-active {
-    min-width: 400px !important;
-    width: 65vw !important;
-    max-width: 400px !important;
-    height: 100%;
-} 
 
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject

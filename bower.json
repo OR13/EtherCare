@@ -11,7 +11,6 @@
     "jquery": "~2.1.4",
     "angular-resource": "~1.4.2",
     "angular-ui-router": "~0.2.15",
-    "angular-material": "~0.11.2",
     "material-design-iconfont": "~0.0.2",
     "angular-toastr": "~1.5.0",
     "moment": "~2.10.6",
@@ -21,7 +20,8 @@
     "web3": "~0.16.0",
     "sjcl": "~1.0.3",
     "angular-local-storage": "~0.2.7",
-    "later": "^1.2.0"
+    "later": "^1.2.0",
+    "angular-material": "^1.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

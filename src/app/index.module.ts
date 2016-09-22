@@ -19,6 +19,7 @@ declare var jQuery: any;
 
 
 angular.module('ethercareApp', [
+    'ngMaterial',
     'ngAnimate',
     'ngCookies',
     'ngTouch',
@@ -28,9 +29,8 @@ angular.module('ethercareApp', [
     'ngResource',
     'angularMoment',
     'ui.router',
-    'ngMaterial',
     'toastr',
-    'LocalStorageModule'
+    'LocalStorageModule',
 ])
 
     .constant('moment', moment)

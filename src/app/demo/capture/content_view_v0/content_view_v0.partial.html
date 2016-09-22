@@ -1,0 +1,48 @@
+<md-dialog aria-label="{{instance.activity_spec.schema_config.title}}">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <i aria-label="{{instance.activity_spec.schema_config.title}}" class="material-icons">
+                        {{instance.activity_spec.render_config.icon}}
+                    </i> 
+                </h2>
+
+                <!--{{instance.activity_spec.render_config.priority}}-->
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i aria-label="close" class="material-icons">
+                       exit_to_app
+                    </i>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <h2>{{instance.activity_spec.schema_config.title}}</h2>
+
+                <iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" ng-src="{{video_url}}"
+                    frameborder="0" allowFullScreen></iframe>
+
+                <div layout="row" layout-padded>
+
+                    <div flex>
+                        <h3>How likely are you to recommend this video?</h3>
+                    </div>
+
+                    <div style="padding-top: 8px;">
+                        <md-button ng-click="rate(rating)" ng-repeat="rating in [1, 2, 3]" class="md-fab md-mini md-primary">
+                            {{rating}}
+                        </md-button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </md-dialog-content>
+
+    </form>
+</md-dialog>
