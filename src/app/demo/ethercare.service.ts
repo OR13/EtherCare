@@ -21,6 +21,7 @@ export interface IActivityInstance {
 export interface IRenderSchema {
     priority: number;
     icon: string;
+    md_theme: string;
     component: ComponentTypes;
 }
 
@@ -86,44 +87,46 @@ export class EtherCareService {
 
         var cron_expr = '0/120 * * * *';
 
-
         this.ActivitySuite = {
             activity_specs: [
-                // {
-                //     "cron_expression": cron_expr,
-                //     "expiration_criteria": "NEVER",
-                //     "render_config": {
-                //         "priority": 2,
-                //         "icon": "feedback",
-                //         "component": ComponentTypes.text_input_v0
-                //     },
-                //     "schema_config": {
-                //         "uid": '0',
-                //         "title": "What word best describes your day?",
-                //         "name": "word",
-                //         "type": "string"
-                //     }
-                // },
-                // {
-                //     "cron_expression": cron_expr,
-                //     "expiration_criteria": "NEVER",
-                //     "render_config": {
-                //         "priority": 1,
-                //         "icon": "healing",
-                //         "component": ComponentTypes.boolean_input_v0
-                //     },
-                //     "schema_config": {
-                //         "uid": '1',
-                //         "title": "Do you feel well today?",
-                //         "name": "is_feeling_well",
-                //         "type": "boolean"
-                //     }
-                // },
+                {
+                    "cron_expression": cron_expr,
+                    "expiration_criteria": "NEVER",
+                    "render_config": {
+                        "priority": 2,
+                        "md_theme": "dark-grey",
+                        "icon": "feedback",
+                        "component": ComponentTypes.text_input_v0
+                    },
+                    "schema_config": {
+                        "uid": '0',
+                        "title": "What word best describes your day?",
+                        "name": "word",
+                        "type": "string"
+                    }
+                },
+                {
+                    "cron_expression": cron_expr,
+                    "expiration_criteria": "NEVER",
+                    "render_config": {
+                        "priority": 1,
+                        "md_theme": "dark-grey",
+                        "icon": "healing",
+                        "component": ComponentTypes.boolean_input_v0
+                    },
+                    "schema_config": {
+                        "uid": '1',
+                        "title": "Do you feel well today?",
+                        "name": "is_feeling_well",
+                        "type": "boolean"
+                    }
+                },
                 {
                     "cron_expression": cron_expr,
                     "expiration_criteria": "NEVER",
                     "render_config": {
                         "priority": 3,
+                        "md_theme": "dark-grey",
                         "icon": "ondemand_video",
                         "component": ComponentTypes.content_view_v0
                     },

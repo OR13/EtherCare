@@ -1,49 +1,26 @@
-<md-dialog aria-label="{{instance.activity_spec.schema_config.title}}">
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>
-                    <i aria-label="{{instance.activity_spec.schema_config.title}}" class="material-icons">
-                        {{instance.activity_spec.render_config.icon}}
-                    </i> 
-                </h2>
+<md-card md-theme="{{ vm.instance.activity_spec.render_config.md_theme }}" md-theme-watch="">
 
-                <!--{{instance.activity_spec.render_config.priority}}-->
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <i aria-label="close" class="material-icons">
-                       exit_to_app
-                    </i>
-                </md-button>
-            </div>
-        </md-toolbar>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">{{vm.instance.activity_spec.schema_config.title}}</span>
+        </md-card-title-text>
+    </md-card-title>
 
-        <md-dialog-content>
-            <div class="md-dialog-content">
+    <md-card-content>
+        <md-input-container flex>
+            <label>
+                {{vm.instance.activity_spec.schema_config.name}}
+            </label>
 
-               <h2>{{instance.activity_spec.schema_config.title}}</h2>
+            <input ng-model="vm.instance.capture.value" type="text">
 
-                <md-input-container class="md-icon-float md-block">
-                    <input ng-model="instance.capture.value">
-                </md-input-container>
+        </md-input-container>
+    </md-card-content>
 
-                <div layout="row" layout-padded>
+    <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="vm.submit()" class="">
+            Submit
+        </md-button>
+    </md-card-actions>
 
-                    <div flex>
-                        <!--<h3>How likely are you to recommend this video?</h3>-->
-                    </div>
-
-                    <div style="padding-top: 8px;">
-                        <md-button ng-click="submit()" class="md-mini md-primary">
-                            Submit
-                        </md-button>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </md-dialog-content>
-
-    </form>
-</md-dialog>
+</md-card>

@@ -1,51 +1,20 @@
-<md-dialog aria-label="{{instance.activity_spec.schema_config.title}}">
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>
-                    <i aria-label="{{instance.activity_spec.schema_config.title}}" class="material-icons">
-                        {{instance.activity_spec.render_config.icon}}
-                    </i>
-                </h2>
+<md-card md-theme="{{ vm.instance.activity_spec.render_config.md_theme }}" md-theme-watch="">
 
-                <!--{{instance.activity_spec.render_config.priority}}-->
-                <span flex></span>
-                
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <i aria-label="close" class="material-icons">
-                       exit_to_app
-                    </i>
-                </md-button>
+      <!--<md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">{{vm.instance.activity_spec.schema_config.title}}</span>
+        </md-card-title-text>
+    </md-card-title>-->
 
-            </div>
-        </md-toolbar>
-
-        <md-dialog-content>
-            <div class="md-dialog-content">
-
-                <h2>{{instance.activity_spec.schema_config.title}}</h2>
-
-                <div layout="row" layout-padded>
-
-                    <div flex>
-                        <!--<h3>How likely are you to recommend this video?</h3>-->
-                    </div>
-
-                    <div style="padding-top: 8px;">
-                        <md-button ng-click="submit(1)" class="md-fab md-mini md-primary">
-                            Yes
-                        </md-button>
-
-                        <md-button ng-click="submit(0)" class="md-fab md-mini md-primary">
-                            No
-                        </md-button>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </md-dialog-content>
-
-    </form>
-</md-dialog>
+    <md-card-actions layout="row" layout-align="end center">
+        <span flex>
+           {{vm.instance.activity_spec.schema_config.title}}
+        </span>
+        <md-button ng-click="vm.submit(0)" class="">
+            No
+        </md-button>
+        <md-button ng-click="vm.submit(1)" class="">
+            Yes
+        </md-button>
+    </md-card-actions>
+</md-card>
