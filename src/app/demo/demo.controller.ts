@@ -56,8 +56,14 @@ export class DemoController {
         this.$rootScope.$watch(() => {
             return this.$rootScope.App.EthereumService.accounts;
         }, (accounts) => {
-            this.$log.debug(' heard accounts ', accounts)
-            this.ethereum_editor.setValue( JSON.stringify(this.$rootScope.App.EthereumService.accounts) );
+            var ed_val = JSON.stringify(this.$rootScope.App.EthereumService.accounts);
+            this.$log.debug(' heard ed_val ', ed_val)
+
+            if (ed_val) {
+                this.ethereum_editor.setValue(ed_val);
+                this.ethereum_editor.setReadOnly(true);
+            }
+
         })
 
         // Editor part
@@ -67,7 +73,7 @@ export class DemoController {
 
 
         // Options
-        _editor.setReadOnly(true);
+
         _session.setUndoManager(new ace.UndoManager());
         _renderer.setShowGutter(false);
 

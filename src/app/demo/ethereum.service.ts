@@ -26,11 +26,8 @@ export class EthereumService {
 
         this.w = window;
         this.web3 = this.w.web3;
-    
 
-
-        this.isOnline = this.w.web3.eth !== undefined;
-
+        this.isOnline = this.web3 !== undefined;
 
         if (this.isOnline) {
             // this.watchForAccounts();
