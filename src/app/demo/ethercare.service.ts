@@ -23,6 +23,7 @@ export interface IRenderSchema {
     icon: string;
     md_theme: string;
     component: ComponentTypes;
+    label: string;
 }
 
 export interface ISchemaConfig {
@@ -54,6 +55,7 @@ export interface IPatient {
 }
 
 declare var KeenAsync: any;
+declare var Keen: any;
 
 declare var later: any;
 
@@ -63,7 +65,11 @@ export class EtherCareService {
 
     public patients: Array<IPatient>;
 
-    public keen_client: any;
+    public keen_capture_client: any;
+
+    public keen_query_client: any;
+
+    public keen_sync_client: any;
 
 
     /** @ngInject */
@@ -78,10 +84,18 @@ export class EtherCareService {
 
         KeenAsync.ready(() => {
             // Configure a client instance
-            this.keen_client = new KeenAsync({
+            this.keen_capture_client = new KeenAsync({
                 projectId: '57da290c8db53dfda8a6fbdb',
                 writeKey: '48EA3BFFB284C3A424D04F4EF80E857DE6A822816F56956A65A4F1369FCC3B63B41180CE94D3FEF38A0A801ADEBCB82935C864F6A62B3DDEE3226488E295003D02B97E2D04EE8AD181C18D67845BB4703764BF0AC62C361E6E3301AFBA9D6F95'
             });
+
+            this.keen_query_client = new KeenAsync({
+                projectId: "57da290c8db53dfda8a6fbdb",
+                readKey: "8D252E9D83BB7F4E514C49B908C1EB0072A8B0B4E37C17A51FE0DA90E987B096E00A764584B424C4D0FFF8069BBF805B04C6BCE14F926A6910D780E47AEAB4958D89146EEAA15629D28D2F30665876E9ADBB85E152AE237DFD15CC1D372E9673"
+            });
+
+            var w: any = window;
+            this.keen_sync_client = w.keen_sync_client;
 
         });
 
@@ -93,6 +107,7 @@ export class EtherCareService {
                     "cron_expression": cron_expr,
                     "expiration_criteria": "NEVER",
                     "render_config": {
+                        "label": "Enter a word",
                         "priority": 2,
                         "md_theme": "dark-grey",
                         "icon": "feedback",
@@ -109,6 +124,7 @@ export class EtherCareService {
                     "cron_expression": cron_expr,
                     "expiration_criteria": "NEVER",
                     "render_config": {
+                        "label": "Feel well?",
                         "priority": 1,
                         "md_theme": "dark-grey",
                         "icon": "healing",
@@ -125,6 +141,7 @@ export class EtherCareService {
                     "cron_expression": cron_expr,
                     "expiration_criteria": "NEVER",
                     "render_config": {
+                        "label": "Rate this video",
                         "priority": 3,
                         "md_theme": "dark-grey",
                         "icon": "ondemand_video",
@@ -230,6 +247,100 @@ export class EtherCareService {
         })
 
         // this.$log.debug('activity_instances', this.patients[0].activity_instances.length);
+    }
+
+    public captureAll = (patient: IPatient, instance: IActivityInstance) => {
+
+        this.$log.debug('patient snapshot: ', patient);
+        this.$log.debug('instance snapshot: ', instance);
+
+        this.capturePatientSnapshot(patient);
+        this.captureInstanceSnapshot(instance);
+    }
+
+    public capturePatientSnapshot = (patient: IPatient) => {
+        this.$log.debug('begin capturePatientSnapshot');
+        this.$rootScope.App.EtherCareService.keen_capture_client.recordEvent('patient_snapshot', {
+            patient: angular.copy(patient)
+        });
+    }
+
+    public captureInstanceSnapshot = (instance: IActivityInstance) => {
+        this.$log.debug('begin capturePatientSnapshot');
+        this.$rootScope.App.EtherCareService.keen_capture_client.recordEvent('instant_snapshot', {
+            instance: angular.copy(instance)
+        });
+    }
+
+    public renderLast100PatientSnapshots = () => {
+
+        var client = new Keen({
+            projectId: '57da290c8db53dfda8a6fbdb',
+            readKey: '8D252E9D83BB7F4E514C49B908C1EB0072A8B0B4E37C17A51FE0DA90E987B096E00A764584B424C4D0FFF8069BBF805B04C6BCE14F926A6910D780E47AEAB4958D89146EEAA15629D28D2F30665876E9ADBB85E152AE237DFD15CC1D372E9673'
+        });
+
+
+        // Configure a Dataviz instance
+        var chart = new Keen.Dataviz()
+            .el('#chart_1')
+            .colors(["#6ab975"])
+            .height(180)
+            .type('metric')
+            .prepare();
+
+        // Run a query
+        client
+            .query('count', {
+                event_collection: "instant_snapshot",
+                targetProperty: "instance.capture.value",
+                timeframe: "this_14_days",
+                timezone: "UTC"
+            })
+            .then(function (res) {
+                // Handle the result
+                chart
+                    .data(res)
+                    .render();
+            })
+            .catch(function (err) {
+                // Handle errors
+                chart.message(err.message);
+            });
+    }
+
+    public renderPageViews = () => {
+
+        var client = new Keen({
+            projectId: '57da290c8db53dfda8a6fbdb',
+            readKey: '8D252E9D83BB7F4E514C49B908C1EB0072A8B0B4E37C17A51FE0DA90E987B096E00A764584B424C4D0FFF8069BBF805B04C6BCE14F926A6910D780E47AEAB4958D89146EEAA15629D28D2F30665876E9ADBB85E152AE237DFD15CC1D372E9673'
+        });
+
+
+        // Configure a Dataviz instance
+        var chart = new Keen.Dataviz()
+            .el('#chart_2')
+            .colors(["#6ab975"])
+            .height(180)
+            .type('area')
+            .prepare();
+
+        // Run a query
+        client
+            .query('count', {
+                event_collection: 'pageviews',
+                interval: 'daily',
+                timeframe: 'this_14_days'
+            })
+            .then(function (res) {
+                // Handle the result
+                chart
+                    .data(res)
+                    .render();
+            })
+            .catch(function (err) {
+                // Handle errors
+                chart.message(err.message);
+            });
     }
 
     public scheduleActivities = () => {

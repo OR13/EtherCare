@@ -21,12 +21,16 @@ export class TextInputV0Controller {
     }
 
     public submit = () => {
-        this.$log.debug('patient snapshot: ', this.patient)
+
 
         var indexOfInst = this.patient.activity_instances.indexOf(this.instance);
 
         //remove this instance
-        this.patient.activity_instances.splice(indexOfInst, 1);
+        var instance = this.patient.activity_instances.splice(indexOfInst, 1);
+
+        this.$rootScope.App.EtherCareService.captureAll(this.patient, this.instance);
+
+
     }
 
 }

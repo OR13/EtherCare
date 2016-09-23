@@ -3,6 +3,8 @@ import {IRootScopeService } from '../index.run';
 
 import {IPatient, IActivitySpec, ActivityInstanceStatus, ComponentTypes, IActivityInstance} from './ethercare.service';
 
+
+declare var KeenAsync: any;
 export class DemoController {
 
     public patient: IPatient;
@@ -25,7 +27,14 @@ export class DemoController {
         this.patient = this.$rootScope.App.EtherCareService.patients[0];
         this.$rootScope.App.EtherCareService.scheduleActivities();
 
+        KeenAsync.ready(() => {
+            this.$rootScope.App.EtherCareService.renderLast100PatientSnapshots();
+            this.$rootScope.App.EtherCareService.renderPageViews();
+            
+        });
+
         this.ct = ComponentTypes;
+        
     }
 
 }

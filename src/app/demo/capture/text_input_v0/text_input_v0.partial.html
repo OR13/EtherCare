@@ -1,4 +1,4 @@
-<md-card md-theme="{{ vm.instance.activity_spec.render_config.md_theme }}" md-theme-watch="">
+<md-card class="ec-capture-card" md-theme="{{ vm.instance.activity_spec.render_config.md_theme }}" md-theme-watch="" >
 
     <md-card-title>
         <md-card-title-text>
@@ -6,15 +6,16 @@
         </md-card-title-text>
     </md-card-title>
 
-    <md-card-content>
-        <md-input-container flex>
-            <label>
-                {{vm.instance.activity_spec.schema_config.name}}
-            </label>
+    <md-card-content >
 
-            <input ng-model="vm.instance.capture.value" type="text">
+        <md-input-container layout-fill>
+            <label>
+                {{vm.instance.activity_spec.render_config.label}}
+            </label>
+            <input ng-model="vm.instance.capture.value" type="text" flex>
 
         </md-input-container>
+
     </md-card-content>
 
     <md-card-actions layout="row" layout-align="end center">

@@ -3,8 +3,16 @@
 
 <md-content class="md-padding" layout-xs="column" layout="row" layout-fill>
 
+  <div layout="column" flex=70>
+    <md-card id="chart_1" md-theme="" md-theme-watch="">
+    </md-card>
 
-  <div flex-xs="" flex-gt-xs="100" layout="column">
+    <md-card id="chart_2" md-theme="" md-theme-watch="">
+    </md-card>
+
+  </div>
+
+  <div layout="column">
 
     <div ng-repeat="instance in demoCtrl.patient.activity_instances">
       <ec-content-view-v0 ng-if="instance.activity_spec.render_config.component === demoCtrl.ct.content_view_v0" patient="demoCtrl.patient"

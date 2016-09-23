@@ -22,7 +22,7 @@ export class ContentViewV0Controller {
         this.video_url = $sce.trustAsResourceUrl(this.instance.activity_spec.schema_config.video_url);
     }
 
-     public submit = (rating: number) => {
+    public submit = (rating: number) => {
         this.$log.debug('patient snapshot: ', this.patient)
 
         this.instance.capture.value = rating;
@@ -31,6 +31,8 @@ export class ContentViewV0Controller {
 
         //remove this instance
         this.patient.activity_instances.splice(indexOfInst, 1);
+
+        this.$rootScope.App.EtherCareService.captureAll(this.patient, this.instance);
     }
 
 }

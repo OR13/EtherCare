@@ -16,7 +16,6 @@ export class BooleanInputV0Controller {
         public $rootScope: IRootScopeService,
         private $mdSidenav: angular.material.ISidenavService,
         private $sce: angular.ISCEService
-
     ) {
 
     }
@@ -30,6 +29,10 @@ export class BooleanInputV0Controller {
 
         //remove this instance
         this.patient.activity_instances.splice(indexOfInst, 1);
+
+        this.$rootScope.App.EtherCareService.captureAll(this.patient, this.instance);
+
+        
     }
 
 }

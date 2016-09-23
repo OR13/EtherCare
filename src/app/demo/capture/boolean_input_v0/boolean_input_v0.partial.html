@@ -1,4 +1,4 @@
-<md-card md-theme="{{ vm.instance.activity_spec.render_config.md_theme }}" md-theme-watch="">
+<md-card class="ec-capture-card" md-theme="{{ vm.instance.activity_spec.render_config.md_theme }}" md-theme-watch="">
 
       <!--<md-card-title>
         <md-card-title-text>
@@ -7,7 +7,7 @@
     </md-card-title>-->
 
     <md-card-actions layout="row" layout-align="end center">
-        <span flex>
+        <span flex layout-padding>
            {{vm.instance.activity_spec.schema_config.title}}
         </span>
         <md-button ng-click="vm.submit(0)" class="">
