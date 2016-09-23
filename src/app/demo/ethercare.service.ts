@@ -213,7 +213,9 @@ export class EtherCareService {
             .then((cat) => {
                 this.$log.debug('cat: ', cat.url)
 
-                document.getElementById('ipfs_image_tag').src = cat.url;
+                var tag: any = document.getElementById('ipfs_image_tag');
+
+                tag.src = cat.url;
 
                 this.$rootScope.$apply();
                 // document.getElementById("test-image").innerHTML += '<img style="width: 75%; padding-left: 30px;" src="' + cat.url + '">';
