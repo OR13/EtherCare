@@ -1,9 +1,42 @@
 <app-navbar>
 </app-navbar>
 
-<md-content class="md-padding" layout-xs="column" layout="row" layout-fill>
+<md-content class="md-padding" layout-xs="column" layout="row">
 
-  <div layout="column" flex=70>
+  <div layout="column" flex=70 class="status-cards">
+
+    <md-card id="ipfs_image_card" md-theme="" md-theme-watch="" >
+
+      <img id="ipfs_image_tag" src="" alt="IPFS DEMO">
+
+      <md-card-actions layout="row" layout-align="start center">
+        <span ng-show="demoCtrl.$rootScope.App.IpfsService.isOnline"> IPFS is running! Here is a squirrel.</span>
+        <span ng-hide="demoCtrl.$rootScope.App.IpfsService.isOnline"> IPFS is offline! No squirrel for you.</span>
+      </md-card-actions>
+
+    </md-card>
+
+    <md-card id="meta_mask_card" md-theme="" md-theme-watch="">
+
+      <div layout-fill  id="ethereum_editor" ui-ace="{
+  useWrapMode : true,
+  showGutter: false,
+  theme:'twilight',
+  mode: 'xml',
+  firstLineNumber: 5,
+  onLoad: demoCtrl.aceLoaded,
+  onChange: demoCtrl.aceChanged
+}">
+
+      </div>
+
+      <md-card-actions layout="row" layout-align="start center">
+        <span ng-show="demoCtrl.$rootScope.App.EthereumService.isOnline"> Ethereum is running! Here are your accounts.</span>
+        <span ng-hide="demoCtrl.$rootScope.App.EthereumService.isOnline"> Ethereum is offline! No accounts for you.</span>
+      </md-card-actions>
+
+    </md-card>
+
     <md-card id="chart_1" md-theme="" md-theme-watch="">
     </md-card>
 

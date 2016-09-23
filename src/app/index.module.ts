@@ -43,6 +43,7 @@ angular.module('ethercareApp', [
     'ui.router',
     'toastr',
     'LocalStorageModule',
+    'ui.ace'
 ])
 
     .constant('moment', moment)

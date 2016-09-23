@@ -5,11 +5,17 @@ import {IPatient, IActivitySpec, ActivityInstanceStatus, ComponentTypes, IActivi
 
 
 declare var KeenAsync: any;
+declare var ace: any;
 export class DemoController {
 
     public patient: IPatient;
 
     public ct: any;
+
+    public ipfs_image: string;
+
+    public ethereum_editor: any;
+
 
     /* @ngInject */
     constructor(
@@ -27,15 +33,55 @@ export class DemoController {
         this.patient = this.$rootScope.App.EtherCareService.patients[0];
         this.$rootScope.App.EtherCareService.scheduleActivities();
 
+
+
         KeenAsync.ready(() => {
             this.$rootScope.App.EtherCareService.renderLast100PatientSnapshots();
             this.$rootScope.App.EtherCareService.renderPageViews();
-            
+
+
+            this.$rootScope.App.EtherCareService.loadIpfsImage();
+
         });
 
         this.ct = ComponentTypes;
-        
+
+
     }
+
+    public aceLoaded = (_editor) => {
+
+        this.ethereum_editor = _editor
+
+        this.$rootScope.$watch(() => {
+            return this.$rootScope.App.EthereumService.accounts;
+        }, (accounts) => {
+            this.$log.debug(' heard accounts ', accounts)
+            this.ethereum_editor.setValue( JSON.stringify(this.$rootScope.App.EthereumService.accounts) );
+        })
+
+        // Editor part
+        var _session = _editor.getSession();
+        var _renderer = _editor.renderer;
+
+
+
+        // Options
+        _editor.setReadOnly(true);
+        _session.setUndoManager(new ace.UndoManager());
+        _renderer.setShowGutter(false);
+
+        // Events
+        // _editor.on("changeSession", function () { });
+        // _session.on("change", function () { });
+    };
+
+    public aceChanged = (e) => {
+        //
+    };
+
+
+
 
 }
 

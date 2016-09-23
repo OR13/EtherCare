@@ -39,12 +39,26 @@
 //   }
 
 
+.status-cards md-card{
+    // margin: 64px;
+}
+.ace_editor { 
+    height: 200px;
+     }
+
 
 .ec-actions{
     margin: 16px;
 }
 
-
 .ec-capture-card md-card-content {
     padding-top: 32px;
+}
+
+#meta_mask_card{
+ 
+}
+
+#ipfs_image_card{
+
 }

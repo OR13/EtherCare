@@ -6,6 +6,12 @@ export class EthereumService {
 
     public web3: any;
 
+    public w: any;
+
+    public isOnline: boolean;
+
+    public accounts: Array<string>;
+
     /** @ngInject */
     constructor(
         private $timeout: angular.ITimeoutService,
@@ -18,11 +24,32 @@ export class EthereumService {
         private $rootScope: IRootScopeService
     ) {
 
-        var w: any = window;
-        this.web3 = w.web3;
-        this.$log.debug('web3.eth.accounts: ', w.web3.eth.accounts);
+        this.w = window;
+        this.web3 = this.w.web3;
+    
+
+
+        this.isOnline = this.w.web3.eth !== undefined;
+
+
+        if (this.isOnline) {
+            // this.watchForAccounts();
+
+            this.accounts = this.w.web3.eth.accounts;
+        }
+
+
+
 
     }
+
+    // public watchForAccounts = () => {
+    //     this.$rootScope.$watch(() => {
+    //         return this.w.web3.eth.accounts;
+    //     }, (accounts) => {
+    //         this.$log.debug('got accounts: ', accounts);
+    //     })
+    // }
 
 
 

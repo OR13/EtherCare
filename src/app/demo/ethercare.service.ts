@@ -208,6 +208,21 @@ export class EtherCareService {
 
     }
 
+    public loadIpfsImage = () => {
+        this.$rootScope.App.IpfsService.ipfs.cat('QmRcm8yiCYmQ1jDxhUVtsjvps4XjtjSTziVSdQsszuiRfw')
+            .then((cat) => {
+                this.$log.debug('cat: ', cat.url)
+
+                document.getElementById('ipfs_image_tag').src = cat.url;
+
+                this.$rootScope.$apply();
+                // document.getElementById("test-image").innerHTML += '<img style="width: 75%; padding-left: 30px;" src="' + cat.url + '">';
+            })
+            .catch((err) => {
+                this.$log.debug('Fail: ', err)
+            })
+    }
+
     public schedule = () => {
         this.patients.forEach((patient: IPatient) => {
             // this.$log.debug('schedule activities for ', patient.name);
