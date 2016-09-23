@@ -19,11 +19,24 @@ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "[\"http://etherc
 ```
 
 
+### Build and Deploy 
 ```
 $ npm install && bower install && tsd install
 $ gulp serve
 $ gulp build
 $ gulp gh-deploy
+```
+
+### Run All Services Including IPFS
+
+```
+$ ./_start.sh
+```
+
+### Just Front End Dev (no IPFS)
+
+```
+$ npm run clean-serve 
 ```
 
 ### Concepts
